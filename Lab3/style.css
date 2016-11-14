@@ -1,0 +1,24 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+.container-fluid {
+    width: auto;
+    padding: 0 15px;
+}
+
+.center {
+    margin: auto;
+    width: 80%;
+    border: 3px;
+    padding: 10px;
+}
+
+#images {
+    padding: 10px;
+}
+
+.img {
+    padding: 2px;
+}

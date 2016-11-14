@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Local Storage Comments">
+    <meta name="author" content="Zachary Falkner">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Local Storage Comments</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="style.css">-->
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <h1>Teaching Seventh Graders in a 'Total Mess' of an election</h1>
+    <div class="row">
+        <div class="m-t-1 col-lg-4">
+            <p>EAU CLAIRE, Wis. — Maybe it’s the talk of fat shaming, or adultery, or sexual assault, or bans on Muslims and walls to keep out Mexicans. But Brent Wathke is having a rough time teaching this presidential campaign to his seventh graders.</p>
+            <p>He is not planning to show his students the third <a target="_blank" href="http://www.nytimes.com/2016/10/19/us/politics/presidential-debate.html">presidential debate</a> on Wednesday; he feels the debates have long ago crossed over into inappropriate. Television ads, particularly the ones from <a target="_blank" href="http://www.nytimes.com/interactive/2016/us/elections/hillary-clinton-on-the-issues.html?inline=nyt-per" title="More articles about Hillary Clinton." class="meta-per">Hillary Clinton</a>’s campaign that heavily quote <a target="_blank" href="http://www.nytimes.com/interactive/2016/us/elections/donald-trump-on-the-issues.html?inline=nyt-per" title="More articles about Donald J. Trump." class="meta-per">Donald J. Trump</a>, are filled with misogynistic comments. Even political cartoons, which Mr. Wathke would have liked to use to teach his students about the delicate art of satire, are too risqué</p>
+            <p>“It is a total mess,” said Mr. Wathke, 33, sitting in his classroom at DeLong Middle School one morning last week, near a dry-erase board where he had scrawled “25 Days to Election” in a red marker. “Honestly, I just can’t wait until it’s over.”</p>
+            <p>Mr. Wathke is one of countless teachers across the country who have anguished over the dark and sometimes shocking tone of the presidential campaign. Like many, he has searched for ways to talk about it in class. Some teachers are planning mock debates before the election; others, like Mr. Wathke, fear that the format could invite students to spout insulting rhetoric.</p>
+
+            <div class="card card-block">
+                <h3 class="card-title">Source: NYTimes</h3>
+                <p class="card-text">Visit the New York Times to read the full article</p>
+                <a target="_blank" href="http://www.nytimes.com/2016/10/19/us/teaching-seventh-graders-in-a-total-mess-of-an-election-season.html?_r=0" class="btn btn-primary">Original Source</a>
+            </div>
+        </div>
+
+        <!--comments-->
+        <div class="m-t-1 col-lg-4">
+            <div id="signupDiv">
+                <form class="form-signin">
+                    <h3 class="form-signin-heading">Please sign in to comment</h3>
+                    <label for="inputUsername" class="sr-only">Username</label>
+                    <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+                    <label for="inputEmail" class="sr-only">Email address</label>
+                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="remember-me"> Remember me
+                        </label>
+                    </div>
+                    <a href="javascript:void(0);" class="btn btn-primary btn-block" type="submit" id="sign-in-button">Sign in</a>
+                </form>
+            </div>
+            <div id="commentsDiv">
+                <div id="commentsListDiv">
+
+                </div>
+                <h4 id="commentUsername"></h4>
+                <label for="inputComment" class="sr-only">New Comment</label>
+                <textarea rows="4" cols="50"  id="inputComment" placeholder="New Comment" autofocus></textarea>
+                <br>
+                <a href="javascript:void(0);" class="btn btn-success" type="submit" id="submit-comment-button">Submit</a>
+                <a href="javascript:void(0);" class="btn btn-warning" type="submit" id="logout-button">Log Out</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js" integrity="sha384-ux8v3A6CPtOTqOzMKiuo3d/DomGaaClxFYdCu2HPMBEkf6x2xiDyJ7gkXU0MWwaD" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha256-1A78rJEdiWTzco6qdn3igTBv9VupN3Q1ozZNTR4WE/Y=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js" integrity="sha256-iaqfO5ue0VbSGcEiQn+OeXxnxAMK2+QgHXIDA5bWtGI=" crossorigin="anonymous"></script>
+
+<script>
+    comments = {
+        username: undefined,
+        cookieName: 'username',
+        commentTemplate: undefined,
+        comments: {index: 0},
+        init: function() {
+            //bindings
+            $('#commentsDiv').hide();
+            $('#sign-in-button').on('click', function() {
+                comments.login();
+            });
+            $('#submit-comment-button').on('click', function() {
+                comments.addComment();
+            });
+            $('#logout-button').on('click', function() {
+                comments.logout();
+            });
+            $('#commentsDiv').on('click', '.deleteComment', function() {
+                var id = $(this).parent().attr("id").match(/\d+/)[0];
+                comments.deleteComment(id);
+            });
+
+            //pre render template
+            var template = $('#commentTemplate').html();
+            Mustache.parse(template);
+            comments.commentTemplate = template;
+
+            comments.initComments();
+
+            //init username
+            comments.username = $.cookie(comments.cookieName);
+            if(comments.username) {
+                comments.display();
+            }
+        },
+        initComments: function() {
+            if(typeof(Storage) !== "undefined") {
+                var storedComments;
+                if (localStorage.comments !== null) {
+                    storedComments = JSON.parse(localStorage.getItem("comments"));
+                    if(storedComments !== null) {
+                        comments.comments = storedComments;
+                        var comment;
+                        for(var i = 0; i < comments.comments.index; i ++) {
+                            comment = comments.comments[i];
+                            console.log(comment);
+                            if(comment !== undefined) {
+                                comments.renderComment(comment)
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        login: function() {
+            var username = $('#inputUsername').val();
+            var email = $('#inputEmail').val();
+            var password = $('#inputPassword').val();
+            if(comments.isUsername(username) && comments.checkPassword(password) && comments.isEmail(email)) {
+                $.cookie(comments.cookieName, username);
+                comments.username = username;
+                comments.display();
+            }
+        },
+        logout: function() {
+            comments.username = '';
+            comments.display();
+            $.removeCookie(comments.cookieName);
+        },
+        checkPassword: function(password) {
+            var regex = /[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]{8,}/;
+            console.log("Password", regex.test(password));
+            return regex.test(password);
+        },
+        isEmail: function (email) {
+            var regex = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+            console.log("Email", regex.test(email));
+            return regex.test(email);
+        },
+        isUsername: function (username) {
+            var regex = /\S*/;
+            console.log("Username", regex.test(username));
+            return regex.test(username);
+        },
+        display: function() {
+            $('#signupDiv').toggle();
+            $('#commentsDiv').toggle();
+            $('#commentUsername').html(comments.username);
+        },
+        addComment: function() {
+            var input = $('#inputComment');
+            var body = input.val();
+            input.val('');
+//            console.log(comment);//TODO: fix newlines
+            var comment = {
+                username: comments.username, body: body, id: comments.comments.index
+            };
+            comments.renderComment(comment);
+            comments.comments.index++;
+            comments.comments[comments.comments.index] = comment;
+            comments.saveState();
+
+        },
+        deleteComment: function(id) {
+            $('#comment'+id).remove();
+            delete comments.comments[id];
+            comments.saveState();
+        },
+        renderComment: function(comment) {
+            var rendered = Mustache.render(
+                    comments.commentTemplate,
+                    comment);
+            $('#commentsListDiv').append(rendered);
+        },
+        saveState: function() {
+            if(typeof(Storage) !== "undefined") {
+                localStorage.setItem("comments",  JSON.stringify(comments.comments));
+            }
+        }
+    };
+
+    $(function() {
+        comments.init();
+    });
+</script>
+
+<script id="commentTemplate" type="x-tmpl-mustache">
+    <div class="card card-block" id="comment{{id}}">
+        <h4 class="card-title">{{username}}</h4>
+        <p class="card-text">{{body}}</p>
+        <a href="javascript:void(0)" class="btn btn-sm btn-danger deleteComment">Delete</a>
+    </div>
+</script>
+
+</html>

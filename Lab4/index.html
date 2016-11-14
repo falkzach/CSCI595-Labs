@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="A javascript pattern guessing game">
+    <meta name="author" content="Zachary Falkner">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Pattern Game</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <h1>Pattern Game</h1>
+    <div class="row" id="alerts"></div>
+    <div class="row">
+        <div class="m-t-1 col-lg-4" id="game">
+            <p id="sequence"></p>
+            <label for="number">Guess the next number</label>
+            <input type="number" id="number">
+            <button id="guess">Guess!</button>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js" integrity="sha384-ux8v3A6CPtOTqOzMKiuo3d/DomGaaClxFYdCu2HPMBEkf6x2xiDyJ7gkXU0MWwaD" crossorigin="anonymous"></script>
+
+<script>
+    patternGame = {
+        seed: 0,
+        sequence: [],
+        next: 0,
+
+        init: function(seed) {
+            patternGame.seed = seed || 0;
+            console.log(patternGame.seed);
+            for(var i = 1; i < 4; i++) {
+                patternGame.appendToSequence(patternGame.getNext());
+            }
+            patternGame.next = patternGame.getNext();
+
+            $('#guess').on('click', function() {
+                var number = $('#number').val();
+                if(number) {
+                    patternGame.checkGuess(number);
+                    $('#number').val('');
+                }
+            });
+        },
+        getNext: function() {
+            var length = patternGame.sequence.length;
+            var last = length > 0 ? patternGame.sequence[length - 1] : patternGame.seed;
+            return last * -2 - 1;
+        },
+        appendToSequence: function(number) {
+            patternGame.sequence.push(number);
+            $('#sequence').append(number + ', ');
+        },
+        checkGuess: function(number) {
+            var correct = parseInt(number) === patternGame.next;
+            patternGame.displayMessage(correct);
+            if(correct) {
+                patternGame.appendToSequence(patternGame.next);
+                patternGame.next = patternGame.getNext();
+            }
+        },
+        displayMessage: function(correct) {
+            var alerts = $('#alerts');
+            var text = correct?"Good job!":"Try again!";
+            var alertClass = correct?"alert-success":"alert-danger";
+            alerts.html('<div class="alert ' + alertClass + '" role="alert"><strong>' + text + '</strong></div>');
+        }
+    };
+    var seed = Math.floor(Math.random() * 6) + 1;
+    patternGame.init(seed);
+</script>
+
+</html>

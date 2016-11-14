@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="A webpage for outdoor photos">
+    <meta name="author" content="Zachary Falkner">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>My Photo Albums</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row center">
+        <h1 style="text-align: center">My Photo Albums</h1>
+        <p class="lead" style="text-align: center">Cool Photos Stolen From the Internet</p>
+
+        <label for="photoAlbumSelect">Photo set</label>
+        <select class="custom-select" id="photoAlbumSelect">
+            <option value=""></option>
+            <option value="Landscape">Landscape</option>
+            <option value="Portraits">Portraits</option>
+            <option value="Weddings">Weddings</option>
+            <option value="Macro">Macro</option>
+            <option value="Sports">Sports</option>
+        </select>
+
+        <button id="contactUs" class="btn btn-primary">Contact Us</button>
+
+
+    </div>
+    <div class="row center">
+        <div id="images">
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="photoModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="contactModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h2>Contact Us</h2>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter name">
+                        <small id="nameHelp" class="form-text text-muted">So we know who you are</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">So we can spam you</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="text" class="form-control" id="phone" aria-describedby="phoneHelp" placeholder="Enter phone">
+                        <small id="phoneHelp" class="form-text text-muted">If you'd like a call</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" class="form-control" id="address" aria-describedby="addressHelp" placeholder="Enter address">
+                        <small id="addressHelp" class="form-text text-muted">So we can send you stuff</small>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" id="submitContact">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js" integrity="sha384-ux8v3A6CPtOTqOzMKiuo3d/DomGaaClxFYdCu2HPMBEkf6x2xiDyJ7gkXU0MWwaD" crossorigin="anonymous"></script>
+
+<script>
+    var photoAlbum = {
+        init: function()
+        {
+            $('#photoAlbumSelect').on('change', function(e) {
+                photoAlbum.changeAlbum(e);
+            });
+
+            $(document).on('click','.img',function(e){
+                var src = e.target.src;
+                $('#photoModal .modal-body').html('<img src="'+src+'" class="img img-fluid" crossorigin="anonymous">');
+                $('#photoModal').modal({});
+            });
+        },
+        currentAlbum: '',
+        images: {
+//            note that myself or my friends own the rights to all photos in Landscape and Sports, everything else was stolen off Google Image Search
+            Landscape: ["./img/Landscape/1.jpg", "./img/Landscape/2.jpg", "./img/Landscape/3.jpg", "./img/Landscape/4.jpg", "./img/Landscape/5.jpg", "./img/Landscape/6.jpg", "./img/Landscape/7.jpg", "./img/Landscape/8.jpg", "./img/Landscape/9.jpg", "./img/Landscape/10.jpg", "./img/Landscape/11.jpg", "./img/Landscape/12.jpg"],
+            Portraits: ["./img/Portraits/1.jpg", "./img/Portraits/2.jpg", "./img/Portraits/3.jpg", "./img/Portraits/4.jpg", "./img/Portraits/5.jpg", "./img/Portraits/6.jpg", "./img/Portraits/7.jpg", "./img/Portraits/8.jpg", "./img/Portraits/9.jpg", "./img/Portraits/10.jpg", "./img/Portraits/11.jpg", "./img/Portraits/12.jpg"],
+            Weddings: ["./img/Weddings/1.jpg", "./img/Weddings/2.jpg", "./img/Weddings/3.jpg", "./img/Weddings/4.jpg", "./img/Weddings/5.jpg", "./img/Weddings/6.jpg", "./img/Weddings/7.jpg", "./img/Weddings/8.jpg", "./img/Weddings/9.jpg", "./img/Weddings/10.jpg", "./img/Weddings/11.jpg", "./img/Weddings/12.jpg"],
+            Macro: ["./img/Macro/1.jpg", "./img/Macro/2.jpg", "./img/Macro/3.jpg", "./img/Macro/4.jpg", "./img/Macro/5.jpg", "./img/Macro/6.jpg", "./img/Macro/7.jpg", "./img/Macro/8.jpg", "./img/Macro/9.jpg", "./img/Macro/10.jpg", "./img/Macro/11.jpg", "./img/Macro/12.jpg"],
+            Sports: ["./img/Sports/1.jpg", "./img/Sports/2.jpg", "./img/Sports/3.jpg", "./img/Sports/4.jpg", "./img/Sports/5.jpg", "./img/Sports/6.jpg", "./img/Sports/7.jpg", "./img/Sports/8.jpg", "./img/Sports/9.jpg", "./img/Sports/10.jpg", "./img/Sports/11.jpg", "./img/Sports/12.jpg"]
+        },
+        changeAlbum: function(e) {
+            e.preventDefault();
+            photoAlbum.currentAlbum = e.target.value;
+            photoAlbum.clearAlbum();
+            photoAlbum.displayAlbum();
+        },
+        clearAlbum: function() {
+            $("#images img").remove();
+        },
+        displayAlbum: function() {
+            $.each(photoAlbum.images[photoAlbum.currentAlbum], function(key, path) {
+                var img = $('<img id="img"'+key+' src="'+path+'"  class="img img-thumbnail m-x-auto" style="max-width: 25%" crossorigin="anonymous">');
+                img.appendTo('#images');
+            });
+        }
+    };
+
+    var contactUs = {
+        init: function() {
+            $('#contactModal').on('shown.bs.modal', function () {
+                $('#name').focus()
+            });
+
+            $('#contactUs').on('click', function () {
+                $('#contactModal').modal('show')
+            });
+
+            $('#submitContact').on('click', function () {
+                contactUs.submit();
+            });
+        },
+
+        submit: function() {
+            if(
+                    $('#name').val() !== ''
+                    && $('#email').val() !== ''
+                    && $('#phone').val() !== ''
+                    && $('#address').val() !== ''
+            )
+            {
+                $('#name').val('');
+                $('#email').val('');
+                $('#phone').val('');
+                $('#address').val('');
+                $('#contactModal').modal('hide');
+            }
+            else
+            {
+                window.alert('fill out the contact info yo!');
+            }
+        }
+    };
+
+    $(function() {
+        photoAlbum.init();
+        contactUs.init();
+    });
+</script>
+
+</html>

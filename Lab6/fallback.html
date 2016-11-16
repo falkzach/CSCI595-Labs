@@ -1,0 +1,25 @@
+<!doctype html>
+
+<html manifest="application.appcache">
+<head>
+    <title><!-- Insert your title here --></title>
+
+</head>
+<body>
+
+<script>
+    var urlPath = window.location.toString();
+    var path = urlPath.split("/");
+    var fileName = path[path.length-1];
+    if (fileName == "fallback.html") {
+        var pageHtml = localStorage.getItem( "LocalStorageOffline.html" );
+        document.body.innerHTML = pageHtml;
+    }
+    else
+    {
+        document.body.innerHTML = 'Page not available';
+    }
+
+</script>
+</body>
+</html>

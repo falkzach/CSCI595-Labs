@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Sound Match Game">
+    <meta name="author" content="Zachary Falkner">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Sound Match Game</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <h1>Sound Match Game</h1>
+
+    <div class="m-t-1 col-lg-12 game">
+        <div class="row">
+            <svg class="tile" id="tile0" width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="10" width="100" height="100" rx="15" ry="15"></rect>
+            </svg>
+            <svg class="tile" id="tile1" width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="10" width="100" height="100" rx="15" ry="15"></rect>
+            </svg>
+            <svg class="tile" id="tile2" width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="10" width="100" height="100" rx="15" ry="15"></rect>
+            </svg>
+            <svg class="tile" id="tile3" width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="10" width="100" height="100" rx="15" ry="15"></rect>
+            </svg>
+        </div>
+        <div class="row">
+            <svg class="tile" id="tile4" width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="10" width="100" height="100" rx="15" ry="15"></rect>
+            </svg>
+            <svg class="tile" id="tile5" width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="10" width="100" height="100" rx="15" ry="15"></rect>
+            </svg>
+            <svg class="tile" id="tile6" width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="10" width="100" height="100" rx="15" ry="15"></rect>
+            </svg>
+            <svg class="tile" id="tile7" width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="10" width="100" height="100" rx="15" ry="15"></rect>
+            </svg>
+        </div>
+        <div class="row">
+            <svg class="tile" id="tile8" width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="10" width="100" height="100" rx="15" ry="15"></rect>
+            </svg>
+            <svg class="tile" id="tile9" width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="10" width="100" height="100" rx="15" ry="15"></rect>
+            </svg>
+            <svg class="tile" id="tile10" width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="10" width="100" height="100" rx="15" ry="15"></rect>
+            </svg>
+            <svg class="tile" id="tile11" width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="10" width="100" height="100" rx="15" ry="15"></rect>
+            </svg>
+        </div>
+    </div>
+
+</div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js" integrity="sha384-ux8v3A6CPtOTqOzMKiuo3d/DomGaaClxFYdCu2HPMBEkf6x2xiDyJ7gkXU0MWwaD" crossorigin="anonymous"></script>
+
+<script>
+    soundGame = {
+        blocked: false,
+        ids: Array.apply(null, {length: 12}).map(Number.call, Number),
+        turn: [],
+        tiles: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+        pairs: [[],[],[],[],[],[]],
+
+        init: function() {
+            $('.tile').on('click', function(event) {
+                var id = this.id.match(/\d+/)[0];
+                soundGame.flip(id);
+            });
+            soundGame.pairTiles();
+        },
+        flip: function(id) {
+            console.log(id);
+            var status = soundGame.turn.length;
+            if(soundGame.blocked === false && $.inArray(parseInt(id), soundGame.turn) === -1) {
+                if(status <= 1) {
+                    $('#tile'+id).css({ fill: "#C90035" });
+                    soundGame.turn.push(parseInt(id));
+                }
+                if(status === 1) {
+                    soundGame.blocked = true;
+                    setTimeout(
+                            function()
+                            {
+                                var match = soundGame.isMatch(soundGame.turn);
+                                if(match === false) {
+                                    soundGame.reset(soundGame.turn);
+                                }
+                                soundGame.unlock();
+                            }, 1000);
+                }
+            }
+        },
+        isMatch: function(ids){
+            console.log(ids);
+            var match = false;
+            $.each(soundGame.pairs, function(index, pair) {
+                console.log(pair);
+                if($.inArray(ids[0], pair) !== -1 && $.inArray(ids[1], pair ) !== -1) {
+                    console.log("match found!");
+                    match = true;
+                    $('#tile'+ids[0]).css({ fill: "#93073E" });
+                    $('#tile'+ids[1]).css({ fill: "#93073E" });
+                    return false;
+                }
+
+            });
+            return match;
+        },
+        reset: function(ids) {
+            $.each(ids, function(index, id) {
+                $('#tile'+id).css({ fill: "#5B1647" });
+            });
+        },
+        unlock: function() {
+            soundGame.turn = [];
+            soundGame.blocked = false;
+        },
+        pairTiles: function() {
+            $.each(soundGame.tiles, function(index, id) {
+                soundGame.placeTile(id);
+
+            });
+            console.log(soundGame.pairs);
+        },
+        getRandom: function(min, max) {
+            return Math.ceil(Math.random() * max) + min - 1;
+        },
+        placeTile: function(tile) {
+            var rand = soundGame.getRandom(0, 6);
+            if(soundGame.pairs[rand].length > 1){
+                soundGame.placeTile(tile);
+            } else {
+                soundGame.pairs[rand].push(tile);
+            }
+        }
+    };
+
+    $(function() {
+        soundGame.init();
+    });
+</script>
+
+</html>

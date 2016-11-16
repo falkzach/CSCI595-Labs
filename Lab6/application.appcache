@@ -1,0 +1,12 @@
+CACHE MANIFEST
+#version 2
+CACHE:
+index.html
+js/jquery-1.11.3.js
+css/style.css
+fallback.html
+resort1.html
+resort2.html
+resort3.html
+FALLBACK:
+fallback.html

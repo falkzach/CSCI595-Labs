@@ -74,6 +74,7 @@
 
 <script>
     soundGame = {
+        currentSound: undefined,
         blocked: false,
         ids: Array.apply(null, {length: 12}).map(Number.call, Number),
         turn: [],
@@ -88,40 +89,35 @@
             soundGame.pairTiles();
         },
         flip: function(id) {
-            console.log(id);
             var status = soundGame.turn.length;
             if(soundGame.blocked === false && $.inArray(parseInt(id), soundGame.turn) === -1) {
+                console.log(id);
+                soundGame.playSound(id);
                 if(status <= 1) {
                     $('#tile'+id).css({ fill: "#C90035" });
                     soundGame.turn.push(parseInt(id));
                 }
                 if(status === 1) {
                     soundGame.blocked = true;
-                    setTimeout(
-                            function()
-                            {
-                                var match = soundGame.isMatch(soundGame.turn);
-                                if(match === false) {
-                                    soundGame.reset(soundGame.turn);
-                                }
-                                soundGame.unlock();
-                            }, 1000);
+                    setTimeout(function() {
+                        var match = soundGame.isMatch(soundGame.turn);
+                        if(match === false) {
+                            soundGame.reset(soundGame.turn);
+                        }
+                        soundGame.unlock();
+                    }, 1000);
                 }
             }
         },
         isMatch: function(ids){
-            console.log(ids);
             var match = false;
             $.each(soundGame.pairs, function(index, pair) {
-                console.log(pair);
                 if($.inArray(ids[0], pair) !== -1 && $.inArray(ids[1], pair ) !== -1) {
-                    console.log("match found!");
                     match = true;
                     $('#tile'+ids[0]).css({ fill: "#93073E" });
                     $('#tile'+ids[1]).css({ fill: "#93073E" });
                     return false;
                 }
-
             });
             return match;
         },
@@ -139,7 +135,6 @@
                 soundGame.placeTile(id);
 
             });
-            console.log(soundGame.pairs);
         },
         getRandom: function(min, max) {
             return Math.ceil(Math.random() * max) + min - 1;
@@ -151,6 +146,21 @@
             } else {
                 soundGame.pairs[rand].push(tile);
             }
+        },
+        playSound: function(id) {
+            if(soundGame.currentSound !== undefined) {
+                soundGame.currentSound[0].pause();
+            }
+            var sid;
+            for(var i = 0; i < soundGame.pairs.length; i++) {
+                if($.inArray(parseInt(id), soundGame.pairs[i]) !== -1) {
+                    sid = i;
+                }
+            }
+            soundGame.currentSound = $('#sound'+sid);
+            if(soundGame.currentSound !== undefined) {
+                soundGame.currentSound[0].play();
+            }
         }
     };
 
@@ -158,5 +168,12 @@
         soundGame.init();
     });
 </script>
+
+<audio id="sound0" src="./audio/action_preview_2.mp3" ></audio>
+<audio id="sound1" src="./audio/chill_preview_2.mp3" ></audio>
+<audio id="sound2" src="./audio/cool_preview_2.mp3" ></audio>
+<audio id="sound3" src="./audio/dark_preview_2.mp3" ></audio>
+<audio id="sound4" src="./audio/happy_preview_2.mp3" ></audio>
+<audio id="sound5" src="./audio/light_preview_2.mp3" ></audio>
 
 </html>

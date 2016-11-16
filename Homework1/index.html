@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,35 +6,320 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="A javascript pattern guessing game">
-    <meta name="author" content="Zachary Falkner">
+    <meta name="description" content="">
+    <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
     <title>2016 Presidential Candidates</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap core CSS -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/font-awesome/css/font-awesome.min.css") rel="stylesheet">
+    <link href="bower_components/bootstrap-social/bootstrap-social.css") rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" rel="stylesheet">
 </head>
 
 <body>
 
+<nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
+    <button type="button" class="navbar-toggler hidden-sm-up" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">2016 Presidential Race</a>
+    <div id="navbar">
+        <nav class="nav navbar-nav pull-xs-left">
+            <a class="nav-item nav-link active" href="#">Candidates</a>
+        </nav>
+    </div>
+</nav>
+
 <div class="container-fluid">
-    <h1>Pattern Game</h1>
-    <div class="row" id="alerts"></div>
     <div class="row">
-        <div class="m-t-1 col-lg-4" id="game">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="javascript:void(0);">Candidates<span class="sr-only">(current)</span></a></li>
+                <li><a id="contactUs" href="javascript:void(0);">Contact</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 main">
+            <h1>Candidates for President</h1>
+            <div class="row placeholders">
+                <div class="col-xs-6 col-sm-6 placeholder democrat">
+                    <img src="img/d_clinton.jpg" class="img-fluid" alt="Hilary Clinton Portrait">
+                    <h4>Hillary 'The Emails' Clinton</h4>
+                    <span class="text-muted">Democratic Party</span>
+                </div>
+                <!--<div class="col-xs-6 col-sm-3 placeholder green">-->
+                    <!--<img src="img/g_stein.jpg" class="img-fluid" alt="Jill Stein Portrait">-->
+                    <!--<h4>Jill Stein</h4>-->
+                    <!--<span class="text-muted">Green Party</span>-->
+                <!--</div>-->
+                <!--<div class="col-xs-6 col-sm-3 placeholder libertarian">-->
+                    <!--<img src="img/l_johnson.jpg" class="img-fluid" alt="Gary Johnson Portrait">-->
+                    <!--<h4>Gary Johnson</h4>-->
+                    <!--<span class="text-muted">Libritarian Party</span>-->
+                <!--</div>-->
+                <div class="col-xs-6 col-sm-6 placeholder republican">
+                    <img src="img/r_trump.jpg" class="img-fluid" alt="Donald Trump Portrait">
+                    <h4>Donald 'The Depolorable' Trump</h4>
+                    <span class="text-muted">Republican Party</span>
+                </div>
+            </div>
+
+            <div id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Running Mate
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in row" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="row placeholders">
+                            <div class="col-xs-6 col-sm-6 placeholder democrat">
+                                <img src="img/d_kaine.jpg" class="img-fluid" alt="Tim Kain Portrait">
+                                <h4>Tim 'Taco' Kain</h4>
+                            </div>
+                            <!--<div class="col-xs-6 col-sm-3 placeholder green">-->
+                                <!--<img src="img/g_baraka.jpg" class="img-fluid" alt="Ajamu Baraka Portrait">-->
+                                <!--<h4>Ajamu Baraka</h4>-->
+                            <!--</div>-->
+                            <!--<div class="col-xs-6 col-sm-3 placeholder libertarian">-->
+                                <!--<img src="img/l_weld.jpg" class="img-fluid" alt="Bill Weld Portrait">-->
+                                <!--<h4>Bill Weld</h4>-->
+                            <!--</div>-->
+                            <div class="col-xs-6 col-sm-6 placeholder republican">
+                                <img src="img/r_pence.jpg" class="img-fluid" alt="Mike Pence Portrait">
+                                <h4>Mike 'my career is over' Pence</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Imigration
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse row" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="col-xs-6 col-sm-6 placeholder democrat">
+                            <p>More Taco Trucks</p>
+                            <p>“By the way, I personally think a taco truck on every corner sounds absolutely delicious.” -Hillary Clinton</p>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 placeholder republican">
+                            <p>Build a wall</p>
+                            <p>“I will build a great wall — and nobody builds walls better than me, believe me — and I’ll build them very inexpensively. I will build a great, great wall on our southern border, and I will make Mexico pay for that wall. Mark my words.” - Donald <Trump></Trump></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingThree">
+                        <h4 class="panel-title">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Economic plan
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse row" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="col-xs-6 col-sm-6 placeholder democrat">
+                            <p>Taco Trucks</p>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 placeholder republican">
+                            <p><s>China</s> <s>Russia</s> <s>Cuba</s> ....</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingFour">
+                        <h4 class="panel-title">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                Political Experience
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse row" role="tabpanel" aria-labelledby="headingFour">
+                        <div class="col-xs-6 col-sm-6 placeholder democrat">
+                            <ul>
+                                <li>United States Secretary of State, 2009-2013</li>
+                                <li>Sworn In, United States Secretary of State, January 21, 2009</li>
+                                <li>Senator, United States Senate, 2001-2009</li>
+                                <li>Candidate, United States President, 2008</li>
+                                <li>First Lady, President Bill Clinton, 1993-2001</li>
+                                <li>First Lady, State of Arkansas, 1979-1981, 1983-1992</li>
+                             </ul>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 placeholder republican">
+                            <ul>
+                                <li>....</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingFive">
+                        <h4 class="panel-title">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                Professional Background
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseFive" class="panel-collapse collapse row" role="tabpanel" aria-labelledby="headingFive">
+                        <div class="col-xs-6 col-sm-6 placeholder democrat">
+                            <ul>
+                                <li>Assistant Professor, University of Arkansas Law School, 1975</li>
+                                <li>Attorney, Rose Law Firm, 1976-1992</li>
+                                <li>Author</li>
+                                <li>Former Board Member, Wal-Mart</li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 placeholder republican">
+                            <ul>
+                                <li>Chairman, Trump Hotels and Casino Resorts, Incorporated</li>
+                                <li>Founder/Chairman/President/Chief Executive Officer, The Trump Organization, 1975-present</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingSix">
+                        <h4 class="panel-title">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                Education
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseSix" class="panel-collapse collapse row" role="tabpanel" aria-labelledby="headingSix">
+                        <div class="col-xs-6 col-sm-6 placeholder democrat">
+                            <ul>
+                                <li>JD, Yale University, 1973</li>
+                                <li>BA, Wellesley College, 1969</li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 placeholder republican">
+                            <ul>
+                                <li>Attended, Fordham University</li>
+                                <li>BS, Economics/Real Estate, Wharton School of Finance, University of Pennsylvania (not confirmed)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
 
         </div>
     </div>
 </div>
 
+<div class="modal fade" id="contactModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h2>Contact Us</h2>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter name">
+                        <small id="nameHelp" class="form-text text-muted">So we know who you are</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">So we can spam you</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="text" class="form-control" id="phone" aria-describedby="phoneHelp" placeholder="Enter phone">
+                        <small id="phoneHelp" class="form-text text-muted">If you'd like a call</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" class="form-control" id="address" aria-describedby="addressHelp" placeholder="Enter address">
+                        <small id="addressHelp" class="form-text text-muted">So we can send you stuff</small>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" id="submitContact">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 </body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js" integrity="sha384-ux8v3A6CPtOTqOzMKiuo3d/DomGaaClxFYdCu2HPMBEkf6x2xiDyJ7gkXU0MWwaD" crossorigin="anonymous"></script>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/tether/dist/js/tether.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
 <script>
+
+    var contactUs = {
+        init: function() {
+            $('#contactModal').on('shown.bs.modal', function () {
+                $('#name').focus()
+            });
+
+            $('#contactUs').on('click', function () {
+                $('#contactModal').modal('show')
+            });
+
+            $('#submitContact').on('click', function () {
+                contactUs.submit();
+            });
+        },
+
+        submit: function() {
+            if(
+                    $('#name').val() !== ''
+                    && $('#email').val() !== ''
+                    && $('#phone').val() !== ''
+                    && $('#address').val() !== ''
+            )
+            {
+                $('#name').val('');
+                $('#email').val('');
+                $('#phone').val('');
+                $('#address').val('');
+                $('#contactModal').modal('hide');
+            }
+            else
+            {
+                window.alert('fill out the contact info yo!');
+            }
+        }
+    };
+
+    $(function() {
+        contactUs.init();
+    });
 
 </script>
 

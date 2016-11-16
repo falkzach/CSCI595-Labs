@@ -91,7 +91,6 @@
         flip: function(id) {
             var status = soundGame.turn.length;
             if(soundGame.blocked === false && $.inArray(parseInt(id), soundGame.turn) === -1) {
-                console.log(id);
                 soundGame.playSound(id);
                 if(status <= 1) {
                     $('#tile'+id).css({ fill: "#C90035" });
@@ -103,6 +102,7 @@
                         var match = soundGame.isMatch(soundGame.turn);
                         if(match === false) {
                             soundGame.reset(soundGame.turn);
+                            soundGame.currentSound[0].pause();
                         }
                         soundGame.unlock();
                     }, 5000);

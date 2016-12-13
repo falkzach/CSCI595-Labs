@@ -29,9 +29,21 @@
                 <option value="2">Starlit Skies</option>
             </select>
 
-            <div id="artist-list"></div>
+            <table id="artist-list">
+                <thead>
+                <tr>
+                    <th>Track ID</th>
+                    <th>Artist</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
         </div>
+
     </div>
+</div>
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
@@ -43,7 +55,10 @@
     var workerSong = {
         worker: undefined,
         currentSound: undefined,
-        file: 'unique_artists.txt',
+        //select which of these files to run on
+//        file: './unique_artists.txt',
+//        file: './short.txt',
+        file: './long.txt',
         init: function() {
             $('#songs-form').on('change', function(e) {
                 id = e.target.value;
@@ -57,6 +72,32 @@
             workerSong.currentSound = $('#sound'+id);
             if(workerSong.currentSound !== undefined) {
                 workerSong.currentSound[0].play();
+                workerSong.readFile();
+            }
+        },
+        readFile: function() {
+            $(document).ready(function() {
+                $.ajax({
+                    type: "GET",
+                    url: workerSong.file,
+                    dataType: "text",
+                    success: function(data) {workerSong.processData(data);}
+                });
+            });
+        },
+        processData: function(csvText) {
+            var worker = new Worker('worker.js');
+
+            worker.addEventListener('message', function(e) {
+                var result = e.data.result;
+                workerSong.displayData(result);
+            }, false);
+
+            worker.postMessage({'cmd': 'read', 'csv': csvText});
+        },
+        displayData: function(data) {
+            for(var i = 0; i < data.length; i ++) {
+                $('#artist-list tr:last').after('<tr><td>' + data[i].track_id + '</td><td>' + data[i].artist + '</td></tr>');
             }
         }
     };
